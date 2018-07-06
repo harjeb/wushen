@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 
 class webutils():
 
-    def __init__(self, browser='firefox'):
+    def __init__(self, browser='chrome'):
         '''
         :param browser:   浏览器对象
         :return:
@@ -16,7 +16,7 @@ class webutils():
         if browser == "firefox" :
             driver = webdriver.Firefox()
         elif browser == "chrome":
-            driver = webdriver.Chrome()
+            driver = webdriver.Chrome(r'D:\webdriver\chromedriver.exe')
         elif browser == "ie" :
             DesiredCapabilities.INTERNETEXPLORER['ignoreProtectedModeSettings'] = True
             driver = webdriver.Ie("../resources/drivers/IEDriverServer.exe")
@@ -27,13 +27,15 @@ class webutils():
         except Exception:
             raise NameError("Not found this browser,You can enter 'firefox', 'chrome', 'ie' or 'phantomjs'.")
 
-    def getElement(self,by,value):
+    def getElement(self,value):
         '''
 
         :param by:     查找元素的方式
         :param value:  文本值
         :return:       查找到的元素
         '''
+        by='xpath'
+
         if by=="id":
             return self.driver.find_element_by_id(value)
         elif by=="class":
@@ -70,7 +72,7 @@ class webutils():
         :param value:    文本值
         :return:
         '''
-        elemet=self.getElement(by, value)
+        elemet=self.getElement(value)
         self.driver.execute_script("arguments[0].innerHTML = \"" + text + "\"",elemet)
 
     def getTextBox(self,by,value):
@@ -79,7 +81,7 @@ class webutils():
         :param value:    文本值
         :return:         返回富文本框的值
         '''
-        elment=self.getElement(by, value)
+        elment=self.getElement(value)
         return self.driver.execute_script("arguments[0].innerHTML()",elment)
 
     def InputByJs(self,by,value):
@@ -88,7 +90,7 @@ class webutils():
         :param value:  文本值
         :return:
         '''
-        elment=self.getElement(by,value)
+        elment=self.getElement(value)
         self.driver.execute_script("arguments[0].value=\""+value+"\"",elment)
 
     def scrollToElement(self,by,value):
@@ -97,7 +99,7 @@ class webutils():
         :param value:  文本值
         :return:
         '''
-        elment=self.getElement(by,value)
+        elment=self.getElement(value)
         self.driver.execute_script("arguments[0].scrollIntoViewIfNeeded(true);",elment)
 
     def SwitchWindow_Two(self):
@@ -185,8 +187,10 @@ class webutils():
         Usage:
         driver.find_element  此为元组(id,kw)，此方法为PageObject模式准备方法
         """
-        by = element[0]
-        value = element[1]
+        #by = element[0]
+        #value = element[1]
+        by = 'xpath'
+        value = element
 
         if by == "id":
             return self.driver.find_element_by_id(value)
@@ -212,8 +216,10 @@ class webutils():
         :param seconds:      等待的时间
         :return:
         """
-        by = element[0]
-        value = element[1]
+        # by = element[0]
+        # value = element[1]
+        by = 'xpath'
+        value = element
 
         if by == "id":
             WebDriverWait(self.driver,seconds,1).until(EC.presence_of_element_located((By.ID, value)))
