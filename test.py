@@ -35,34 +35,36 @@ def dailyquest():
     driver.save_screenshot('quest.png')
 
     #副本
-    # for i in xrange(5):
-    #     driver.find_element_by_xpath("//span[text()='江湖']").click()
-    #     driver.find_element_by_xpath("//span[text()='副本']").click()
-    #     fb1()
-    #     print 'finish %s' % str(i+1)
+    for i in xrange(11):
+        driver.find_element_by_xpath("//span[text()='江湖']").click()
+        driver.find_element_by_xpath("//span[text()='副本']").click()
+        fb1()
+        print 'finish %s' % str(i+1)
     #师门
     driver.find_element_by_xpath("//span[text()='江湖']").click()
     driver.find_element_by_xpath("//span[@for='0']").click()
     driver.find_element_by_xpath("//div[text()='逍遥派']").click()
     driver.find_element_by_xpath("//span[@cmd='jh fam 5 start']").click()
-    i=0
-    while i<=19:
+    i=1
+    while i<=0:
         time.sleep(1)
         driver.find_element_by_xpath("//span[text()='聪辩老人 苏星河']").click()
         driver.find_element_by_xpath("//span[text()='师门任务']").click()
         driver.find_element_by_xpath("//span[text()='师门任务']").click()
-        driver.implicitly_wait(2)
+        driver.implicitly_wait(3)
         try:
             # give=(By.XPATH,"//span[contains(text(),'上交')]")
             # WebDriverWait(driver, 3, 0.5).until(EC.presence_of_element_located(give))
             driver.find_element_by_xpath("//span[contains(text(),'上交')]").click()
             driver.find_element_by_xpath("//*[name()='svg']/*[name()='text' and @dir='north']").click()
+            time.sleep(1)
             driver.find_element_by_xpath("//*[name()='svg']/*[name()='text' and @dir='south']").click()
             i+=1
             print 'finish %s' % str(i + 1)
         except:
             driver.find_element_by_xpath("//span[text()='放弃']").click()
             driver.find_element_by_xpath("//*[name()='svg']/*[name()='text' and @dir='north']").click()
+            time.sleep(1)
             driver.find_element_by_xpath("//*[name()='svg']/*[name()='text' and @dir='south']").click()
 
 
