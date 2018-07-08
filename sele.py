@@ -51,7 +51,7 @@ class webutils():
         elif by=="tag":
             return self.driver.find_element_by_tag_name(value)
         elif by=='xpath':
-            return self.driver.find_element_by_xpath(value)
+            return self.s.Click(value)
         elif by=='js'or by=="jquery":
             return self.ExcuteJs(value)
         else:
@@ -203,7 +203,7 @@ class webutils():
         elif by == "text_part":
             return self.driver.find_element_by_partial_link_text(value)
         elif by == "xpath":
-            return self.driver.find_element_by_xpath(value)
+            return self.s.Click(value)
         elif by == "css":
             return self.driver.find_element_by_css_selector(value)
         else:
@@ -282,7 +282,7 @@ class webutils():
         self.wait_element(element)
         ActionChains.double_click(self.find_element(element)).perform()
 
-    def  drag_and_drop(self,element):
+    def drag_and_drop(self,element):
         '''
         功能：拖拽元素
         :param element: 元素的表达式

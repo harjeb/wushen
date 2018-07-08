@@ -1,3 +1,75 @@
 {
-  "a":"//input[@type='submit'][2]"
+  "username":"//input[@id='login_name']",
+  "password":"//input[@id='login_pwd']",
+  "usernameT":"harjeb",
+  "passwordT":"123456",
+  "login":"//span[text()='登陆']",
+  "region":"//li[contains(text(),'二区')]",
+  "selectServer":"//li[@command='SelectServer']",
+  "role":"//li[contains(text(),'中央书记')]",
+  "selectrole":"//li[@command='SelectRole']",
+  "showtool":"//span[@command='showtool']",
+  "quest":"//span[text()='任务']",
+  "jh":"//span[text()='江湖']",
+  "fb":"//span[text()='副本']",
+  "jhtab":"//span[@for='0']",
+  "fbtab":"",
+  "xiaoyao":"//div[text()='逍遥派']",
+  "enter5":"//span[@cmd='jh fam 5 start']",
+  "苏星河":"//span[text()='聪辩老人 苏星河']",
+  "师门任务":"//span[text()='师门任务']",
+  "上交":"//span[contains(text(),'上交')]",
+  "east":"//*[name()='svg']/*[name()='text' and @dir='east']",
+  "south":"//*[name()='svg']/*[name()='text' and @dir='south']",
+  "west":"//*[name()='svg']/*[name()='text' and @dir='west']",
+  "north":"//*[name()='svg']/*[name()='text' and @dir='north']",
+  "up":"//*[name()='svg']/*[name()='text' and @dir='up']",
+  "enter":"//*[name()='svg']/*[name()='text' and @dir='enter']",
+  "hp":"//div[@itemid='rbzs267b889']//div[@class='progress hp']/div",
+  "mp":"",
+  "showcombat":"//span[@command='showcombat']",
+  "liaoshang":"//span[@cmd='liaoshang']",
+  "dazuo":"//span[@cmd='dazuo']",
+  "stop":"//span[@command='stopstate']",
+  "内力":"//hig[contains(text(),'内力')]",
+  "kill":"//span[contains(@cmd,'kill')]",
+  "body":"//span[@class='item-name']/wht[contains(text(),'尸体')]",
+  "loot":"//span[contains(@cmd,'get all from')]",
+
+  "fb1":"//div[contains(@class,'fb-item') and @index='1']",
+  "fb1s":"//span[@cmd='jh fb 1 start1']",
+  "fb1g":"//span[@cmd='cr yz/cuifu/caizhu']",
+  "fb3":"//div[contains(@class,'fb-item') and @index='3']",
+  "fb3s":"//span[@cmd='jh fb 3 start1']",
+  "fb3g":"//span[@cmd='cr yz/lcy/dating']",
+
+
+
+  "close":"//span[@class='dialog-close glyphicon glyphicon-remove-circle']",
+  "cr":"//span[@cmd='cr']",
+  "crover":"//span[@cmd='cr over']",
+
+  "管家":"//span[text()='管家']",
+  "崔元外":"//span[text()='财主 崔员外']",
+  "lookmen":"//cmd[@cmd='look men']",
+  "openmen":"//span[@cmd='open men']",
+  "答应她":"//span[text()='答应她']",
+  "崔莺莺":"//span[text()='财主女儿 崔莺莺']",
+  "askeast":"//span[text()='询问东厢']",
+  "lookgui":"//cmd[@cmd='look gui']",
+  "searchgui":"//span[@cmd='search gui']",
+
+
+  "韦春芳":"//span[text()='丽春院老板娘 韦春芳']",
+  "龟公":"//span[text()='龟公']",
+  "史松":"//span[text()='黑龙鞭 史松']",
+  "looktai":"//cmd[@cmd='look tai']",
+  "tuitai":"//span[@cmd='tui tai']",
+  "茅十八":"//span[text()='朝廷逃犯 茅十八']"
+
+
+
+
+
+
 }
