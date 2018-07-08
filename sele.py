@@ -5,6 +5,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import time
 
 class webutils():
 
@@ -16,7 +17,7 @@ class webutils():
         if browser == "firefox" :
             driver = webdriver.Firefox()
         elif browser == "chrome":
-            driver = webdriver.Chrome(r'D:\webdriver\chromedriver.exe')
+            driver = webdriver.Chrome(r'D:\wushen\chromedriver.exe')
         elif browser == "ie" :
             DesiredCapabilities.INTERNETEXPLORER['ignoreProtectedModeSettings'] = True
             driver = webdriver.Ie("../resources/drivers/IEDriverServer.exe")
@@ -166,7 +167,8 @@ class webutils():
         :param seconds:    等待时间
         :return:
         '''
-        self.driver.implicitly_wait(seconds)
+        time.sleep(seconds)
+        #self.driver.implicitly_wait(seconds)
 
     def Close(self):
         '''
@@ -179,6 +181,10 @@ class webutils():
         :return:  退出浏览器
         '''
         self.driver.quit()
+
+    def find_elements(self,element):
+        return self.driver.find_elements_by_xpath(element)
+
 
     def find_element(self,element):
         """
@@ -203,7 +209,7 @@ class webutils():
         elif by == "text_part":
             return self.driver.find_element_by_partial_link_text(value)
         elif by == "xpath":
-            return self.s.Click(value)
+            return self.driver.find_element_by_xpath(value)
         elif by == "css":
             return self.driver.find_element_by_css_selector(value)
         else:
@@ -235,6 +241,17 @@ class webutils():
             WebDriverWait(self.driver,seconds,1).until(EC.presence_of_element_located((By.CSS_SELECTOR, value)))
         else:
             raise NameError("Please enter the correct targeting elements,'id','name','class','text','xpaht','css'.")
+
+    def untilnot(self, element, seconds=15):
+        """
+        等待元素在指定的时间类消失
+        :param element:      元素的定位表达式
+        :param seconds:      等待的时间
+        :return:
+        """
+        WebDriverWait(self.driver, seconds, 0.5).until_not(EC.presence_of_element_located((By.XPATH, element)))
+
+
 
     def Send_Keys(self,element,value):
         '''
