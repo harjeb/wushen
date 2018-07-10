@@ -66,7 +66,7 @@ class webutils():
         '''
         self.driver.execute_script(js)
 
-    def SetTextBox(self,text,by,value):
+    def SetTextBox(self,text,value):
         '''
         :param text:     设置文本框的值
         :param by:       查找元素的方式
@@ -270,7 +270,9 @@ class webutils():
         :return:
         '''
         self.wait_element(element)
+        self.wait(0.5)
         self.find_element(element).click()
+
 
     def Right_Click(self,element):
         '''

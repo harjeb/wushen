@@ -24,26 +24,39 @@ def login():
     s.Click(j['selectrole'])
     s.wait(2)
 
-def dailyquest():
-    s.Click(j['showtool'])
-    s.Click(j['quest'])
 
-    #副本
-    for i in xrange(0):
+def buyfood():
+    # 买食物
+    try:
         s.Click(j['jh'])
-        s.Click(j['fb'])
-        fb3()
-        print '副本完成 %s 次' % str(i+1)
-        # if (i+1)%3==0:
-        #     cleanbag()
+    except:
+        s.Click(j['showtool'])
+        s.Click(j['jh'])
 
-    #师门
+    s.Click(j['jhtab'])
+    s.Click(j['yangzhou'])
+    s.Click(j['enter0'])
+    s.Click(j['north'])
+    s.Click(j['north'])
+    s.Click(j['east'])
+    s.Click(j[u'店小二'])
+    s.Click(j['buy'])
+    buylist = [j[u'米饭'], j[u'米酒'], j[u'包子'], j[u'扬州炒饭'], j[u'鸡腿'],j[u'面条'],j[u'花雕酒']]
+    for i in buylist:
+        s.Click(i)
+        s.Click(j['confirmbuy'])
+        s.Send_Keys(j['buy5'], '5')
+        s.Click(j['ok'])
+
+
+def shimen():
+    # 师门
     s.Click(j['jh'])
     s.Click(j['jhtab'])
     s.Click(j['xiaoyao'])
     s.Click(j['enter5'])
-    i=1
-    while i<=19:
+    i = 1
+    while i <= 20:
         s.wait(1)
         s.Click(j[u'苏星河'])
         s.Click(j[u'师门任务'])
@@ -56,15 +69,34 @@ def dailyquest():
             s.Click(j['north'])
             s.wait(1)
             s.Click(j['south'])
-            i+=1
-            print '师门任务完成 %s 次' % str(i-1)
+            i += 1
+            print '师门任务完成 %s 次' % str(i - 1)
         except:
             s.Click(j['giveup'])
             s.Click(j['north'])
-            s.wait(1)
+            s.wait(0.5)
             s.Click(j['south'])
 
+def fb():
+    #副本
+    if not s.get_display(j['jh']):
+        s.Click(j['showtool'])
+    for i in xrange(20):
+        s.Click(j['jh'])
+        s.Click(j['fb'])
+        fb1()
+        print '副本完成 %s 次' % str(i+1)
+        if (i+1)%3==0:
+            cleanbag()
 
+def dailyquest():
+    #stop state
+    stop=s.find_element(j['stop'])
+    if stop.is_displayed():
+        stop.click()
+    buyfood()
+    shimen()
+    fb()
 
 def restore():
     if not s.get_display(j['hp']):
@@ -89,12 +121,19 @@ def restore():
             pass
     except:
         pass
-    s.Click(j['dazuo'])
-    s.wait(12)
-    s.wait_element(j[u'内力'])
-    stop=s.find_element(j['stop'])
-    if stop.is_displayed():
-        stop.click()
+    cmp=s.get_attribute(j['mp'],'style')
+    cmp=cmp.split("width:")[1].split("%;")[0]
+    cmp.strip()
+    if float(cmp)<=70:
+        try:
+            s.Click(j['dazuo'])
+            s.wait(12)
+            s.wait_element(j[u'内力'])
+            stop=s.find_element(j['stop'])
+            if stop.is_displayed():
+                stop.click()
+        except:
+            print 'dazuo error...'
 
 
 def kill():
@@ -151,8 +190,8 @@ def fb1():
     s.Click(j['askeast'])
     kill()
     s.Click(j['east'])
-    s.Click(j['east'])
     try:
+        s.Click(j['east'])
         s.Click(j['lookgui'])
         s.wait_element(j['searchgui'], seconds=20)
         s.Click(j['searchgui'])
