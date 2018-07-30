@@ -47,6 +47,29 @@ def buyfood():
         s.Click(j['confirmbuy'])
         s.Send_Keys(j['buy5'], '5')
         s.Click(j['ok'])
+    # 买养精丹
+    s.Click(j['close'])
+    s.Click(j['west'])
+    s.Click(j['south'])
+    s.Click(j['south'])
+    s.Click(j['east'])
+    s.Click(j['east'])
+    s.Click(j['north'])
+    s.Click(j[u'平一指'])
+    s.Click(j['buy'])
+    s.Click(j[u'养精丹'])
+    s.Click(j['confirmbuy'])
+    s.Send_Keys(j['buy5'], '10')
+    s.Click(j['ok'])
+    s.Click(j['close'])
+    s.Click(j['bag'])
+    for i in xrange(10):
+        s.Click(j[u'养精丹bag'])
+        s.Click(j['use'])
+
+
+
+
 
 
 def shimen():
@@ -138,9 +161,9 @@ def restore():
 
 def kill():
     s.Click(j['kill'])
-    s.wait_element(j['body'],seconds=300)
-    s.Click(j['body'])
-    s.Click(j['loot'])
+    # s.wait_element(j['body'],seconds=300)
+    # s.Click(j['body'])
+    # s.Click(j['loot'])
 
 
 def cleanbag():

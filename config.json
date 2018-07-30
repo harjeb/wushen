@@ -48,9 +48,16 @@
   "fb3s":"//span[@cmd='jh fb 3 start1']",
   "fb3g":"//span[@cmd='cr yz/lcy/dating']",
 
+
+
+
+
+
   "店小二":"//span[text()='店小二']",
   "confirmbuy":"//span[contains(@cmd,'confirm buy')]",
   "buy5":"//input[@type='text' and @value='1']",
+  "bag":"//span[command='pack']",
+  "use":"//span[text()='使用']",
 
   "米饭":"//div[@otype='2']/wht[text()='米饭']",
   "包子":"//div[@otype='2']/wht[text()='包子']",
@@ -60,6 +67,9 @@
   "鸡腿":"//div[@otype='2']/wht[text()='鸡腿']",
   "面条":"//div[@otype='2']/wht[text()='面条']",
   "铁镐":"//div[@otype='2']/wht[text()='铁镐']",
+  "平一指":"//span[text()='药铺老板 平一指']",
+  "养精丹":"//div[@otype='2']/hig[text()='养精丹']",
+  "养精丹bag":"//div[@class='obj-item']/hig[text()='养精丹']",
 
   "sell":"//span[text()='卖掉']",
   "ok":"//span[@class='dialog-btn btn-ok']",
