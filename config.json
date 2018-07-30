@@ -56,7 +56,7 @@
   "店小二":"//span[text()='店小二']",
   "confirmbuy":"//span[contains(@cmd,'confirm buy')]",
   "buy5":"//input[@type='text' and @value='1']",
-  "bag":"//span[command='pack']",
+  "bag":"//span[@command='pack']",
   "use":"//span[text()='使用']",
 
   "米饭":"//div[@otype='2']/wht[text()='米饭']",
