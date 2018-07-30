@@ -74,7 +74,11 @@ def buyfood():
 
 def shimen():
     # 师门
-    s.Click(j['jh'])
+    try:
+        s.Click(j['jh'])
+    except:
+        s.Click(j['showtool'])
+        s.Click(j['jh'])
     s.Click(j['jhtab'])
     s.Click(j['xiaoyao'])
     s.Click(j['enter5'])
@@ -93,7 +97,7 @@ def shimen():
             s.wait(1)
             s.Click(j['south'])
             i += 1
-            print '师门任务完成 %s 次' % str(i - 1)
+            print u'师门任务完成 %s 次' % str(i - 1)
         except:
             s.Click(j['giveup'])
             s.Click(j['north'])
@@ -108,7 +112,7 @@ def fb():
         s.Click(j['jh'])
         s.Click(j['fb'])
         fb1()
-        print '副本完成 %s 次' % str(i+1)
+        print u'副本完成 %s 次' % str(i+1)
         if (i+1)%3==0:
             cleanbag()
 
@@ -118,7 +122,7 @@ def dailyquest():
     if stop.is_displayed():
         stop.click()
     # buyfood()
-    shimen()
+    # shimen()
     fb()
 
 def restore():
@@ -132,7 +136,7 @@ def restore():
         chp.strip()
         if float(chp)<=90:
             try:
-                print '当前血量 %s, 开始疗伤回血' % str(chp)
+                print u'当前血量 %s, 开始疗伤回血' % str(chp)
                 s.Click(j['liaoshang'])
             except:
                 s.Click(j['showcombat'])
@@ -161,7 +165,7 @@ def restore():
 
 def kill():
     s.Click(j['kill'])
-    # s.wait_element(j['body'],seconds=300)
+    s.wait_element(j['body'],seconds=300)
     # s.Click(j['body'])
     # s.Click(j['loot'])
 
