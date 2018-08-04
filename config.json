@@ -120,7 +120,9 @@
   "ask_dao":"//span[text()='询问胡家刀谱']",
   "givehead":"//span[text()='把阎基的头颅给胡斐']",
 
-  "die":"//span[@pid='unarmed.zhong']"
+  "die":"//span[@pid='unarmed.zhong']",
+  "po":"//span[@pid='unarmed.po']",
+  "san":"//span[@pid='unarmed.san']"
 
 
 

@@ -6,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
+from selenium.common.exceptions import NoSuchElementException       
 
 class webutils():
 
@@ -181,6 +182,13 @@ class webutils():
         :return:  退出浏览器
         '''
         self.driver.quit()
+       
+    def exists(self, xpath):
+        try:
+            self.driver.find_element_by_xpath(xpath)
+        except NoSuchElementException:
+            return False
+        return True
 
     def find_elements(self,element):
         return self.driver.find_elements_by_xpath(element)

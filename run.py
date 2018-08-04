@@ -134,8 +134,8 @@ def dailyquest():
     stop=s.find_element(j['stop'])
     if stop.is_displayed():
         stop.click()
-    buyfood()
-    shimen()
+    # buyfood()
+    # shimen()
     fb()
 
 def restore():
@@ -177,13 +177,27 @@ def restore():
 
 def chuzhao():
     try:
-        s.Click(j['die'])
+        while not s.exists(j['body']):
+            s.Click(j['die'])
+            s.Click(j['san'])
+            s.Click(j['po'])
+            s.wait(1)
     except:
         pass
 
 
 def kill(sb=""):
-    if sb is not '':
+    if sb is 'i':
+        s.wait(1)
+        chuzhao()
+        #s.wait_element(j['body'],seconds=300)
+        try:
+            s.Click(j['body'])
+            s.Click(j['loot'])
+        except:
+            print u'autoloot not work'
+        print u'杀死了来干你的傻屌'
+    elif sb is not '':
         s.Click(sb)
         s.Click(j['kill'])
         sttime = time.time()
@@ -192,7 +206,7 @@ def kill(sb=""):
         if match:
             print u'正在击杀%s' % match.group(1)
         chuzhao()
-        s.wait_element(j['body'],seconds=300)
+        #s.wait_element(j['body'],seconds=300)
         usedtime = time.time() - sttime
         if match:
             print u'成功杀死了%s, 用时%sS' % (match.group(1), usedtime)
@@ -203,7 +217,6 @@ def kill(sb=""):
             print u'autoloot not work'
     else:
         s.wait(1)
-        chuzhao()
         s.wait_element(j['body'],seconds=300)
         try:
             s.Click(j['body'])
@@ -211,7 +224,6 @@ def kill(sb=""):
         except:
             print u'autoloot not work'
         print u'杀死了来干你的傻屌'
-
 
 def cleanbag():
     try:
@@ -227,6 +239,8 @@ def cleanbag():
     s.Click(j[u'杨永福'])
     s.Click(j['buy'])
     s.Click(j['sellall'])
+    s.Click(j['close'])
+    s.Click(j['north'])
 
 def fbb(*args):
     for ele in args:
@@ -324,7 +338,7 @@ def fb9():
     s.Click(j['southup'])
     kill('')
     s.Click(j['eastup'])
-    kill('')
+    kill('i')
     restore()
     s.Click(j['westdown'])
     s.Click(j['northdown'])
