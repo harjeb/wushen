@@ -3,6 +3,7 @@
 import re
 from sele import webutils
 import json
+import time
 
 j = json.load(open('config.json'))
 s = webutils()
@@ -108,21 +109,33 @@ def fb():
     #副本
     if not s.get_display(j['jh']):
         s.Click(j['showtool'])
+    try:
+        s.Click(j['bag'])
+        s.Click(j['weapon'])
+        s.Click(j['equip'])
+    except:
+        print u'装备已换好，不用更换'
     for i in xrange(20):
         s.Click(j['jh'])
         s.Click(j['fb'])
-        fb1()
+        fb9()
         print u'副本完成 %s 次' % str(i+1)
         if (i+1)%3==0:
             cleanbag()
+    try:
+        s.Click(j['bag'])
+        s.Click(j['tiegao'])
+        s.Click(j['equip'])
+    except:
+        print u'铁镐已换号，不用更换'
 
 def dailyquest():
     #stop state
     stop=s.find_element(j['stop'])
     if stop.is_displayed():
         stop.click()
-    # buyfood()
-    # shimen()
+    buyfood()
+    shimen()
     fb()
 
 def restore():
@@ -162,12 +175,42 @@ def restore():
         except:
             print 'dazuo error...'
 
+def chuzhao():
+    try:
+        s.Click(j['die'])
+    except:
+        pass
 
-def kill():
-    s.Click(j['kill'])
-    s.wait_element(j['body'],seconds=300)
-    # s.Click(j['body'])
-    # s.Click(j['loot'])
+
+def kill(sb=""):
+    if sb is not '':
+        s.Click(sb)
+        s.Click(j['kill'])
+        sttime = time.time()
+        pattern = re.compile(r'(?<=\')(.+)(\')')
+        match = pattern.search(sb)
+        if match:
+            print u'正在击杀%s' % match.group(1)
+        chuzhao()
+        s.wait_element(j['body'],seconds=300)
+        usedtime = time.time() - sttime
+        if match:
+            print u'成功杀死了%s, 用时%sS' % (match.group(1), usedtime)
+        try:
+            s.Click(j['body'])
+            s.Click(j['loot'])
+        except:
+            print u'autoloot not work'
+    else:
+        s.wait(1)
+        chuzhao()
+        s.wait_element(j['body'],seconds=300)
+        try:
+            s.Click(j['body'])
+            s.Click(j['loot'])
+        except:
+            print u'autoloot not work'
+        print u'杀死了来干你的傻屌'
 
 
 def cleanbag():
@@ -184,6 +227,11 @@ def cleanbag():
     s.Click(j[u'杨永福'])
     s.Click(j['buy'])
     s.Click(j['sellall'])
+
+def fbb(*args):
+    for ele in args:
+        s.Click(ele)
+#fb(*fb1)
 
 def fb1():
     s.Click(j['fb1'])
@@ -251,6 +299,78 @@ def fb3():
     s.Click(j['enter'])
     s.Click(j[u'茅十八'])
     kill()
+    s.wait(3)
+    s.Click(j['cr'])
+    s.Click(j['crover'])
+
+def fb9():
+    s.Click(j['fb9'])
+    s.Click(j['fb9s'])
+    s.wait(2)
+    s.Click(j['close'])
+    s.Click(j['fb9g'])
+    restore()
+    s.Click(j['northeast'])
+    kill('')
+    s.Click(j['east'])
+    kill('')
+    s.Click(j['southeast'])
+    kill('')
+    s.Click(j['east'])
+    s.Click(j['east'])
+    kill('')
+    s.Click(j['eastup'])
+    kill('')
+    s.Click(j['southup'])
+    kill('')
+    s.Click(j['eastup'])
+    kill('')
+    restore()
+    s.Click(j['westdown'])
+    s.Click(j['northdown'])
+    s.Click(j['west'])
+    s.wait(2)
+    s.Click(j['west'])
+    s.Click(j['northwest'])
+    s.Click(j['west'])
+    s.Click(j['southwest'])
+    s.Click(j['west'])
+    s.Click(j['givemoney'])
+    s.wait(12)
+    s.Click(j['south'])
+    s.Click(j['west'])
+    s.Click(j['west'])
+    s.Click(j['west'])
+    s.Click(j['west'])
+    s.Click(j['west'])
+    s.Click(j['north'])
+    kill(j[u'阎基'])
+    restore()
+    s.Click(j['south'])
+    s.Click(j['east'])
+    s.Click(j['north'])
+    s.Click(j['north'])
+    s.Click(j['north'])
+    s.Click(j['north'])
+    s.Click(j['north'])
+    s.Click(j['east'])
+    s.Click(j['givemoney'])
+    s.wait(12)
+    s.Click(j['northeast'])
+    s.Click(j['east'])
+    s.Click(j['southeast'])
+    s.Click(j['east'])
+    kill(j[u'平四'])
+    restore()
+    s.Click(j['north'])
+    s.Click(j[u'胡斐'])
+    s.Click(j['ask_yan'])
+    try:
+        s.Click(j['givehead'])
+    except:
+        print 'no head'
+    s.Click(j['ask_dao'])
+    kill(j[u'胡斐'])
     s.wait(3)
     s.Click(j['cr'])
     s.Click(j['crover'])

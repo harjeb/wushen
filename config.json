@@ -28,6 +28,14 @@
   "south":"//*[name()='svg']/*[name()='text' and @dir='south']",
   "west":"//*[name()='svg']/*[name()='text' and @dir='west']",
   "north":"//*[name()='svg']/*[name()='text' and @dir='north']",
+  "northeast":"//*[name()='svg']/*[name()='text' and @dir='northeast']",
+  "southeast":"//*[name()='svg']/*[name()='text' and @dir='southeast']",
+  "southwest":"//*[name()='svg']/*[name()='text' and @dir='southwest']",
+  "northwest":"//*[name()='svg']/*[name()='text' and @dir='northwest']",
+  "eastup":"//*[name()='svg']/*[name()='text' and @dir='eastup']",
+  "southup":"//*[name()='svg']/*[name()='text' and @dir='southup']",
+  "northdown":"//*[name()='svg']/*[name()='text' and @dir='northdown']",
+  "westdown":"//*[name()='svg']/*[name()='text' and @dir='westdown']",
   "up":"//*[name()='svg']/*[name()='text' and @dir='up']",
   "enter":"//*[name()='svg']/*[name()='text' and @dir='enter']",
   "hp":"//div[@itemid='rbzs267b889']//div[@class='progress hp']/div",
@@ -47,11 +55,15 @@
   "fb3":"//div[contains(@class,'fb-item') and @index='3']",
   "fb3s":"//span[@cmd='jh fb 3 start1']",
   "fb3g":"//span[@cmd='cr yz/lcy/dating']",
+  "fb9":"//div[contains(@class,'fb-item') and @index='9']",
+  "fb9s":"//span[@cmd='jh fb 9 start1']",
+  "fb9g":"//span[@cmd='cr bj/guanwai/damen']",
 
 
 
-
-
+  "weapon":"//div[@class='obj-item']/*[contains(text(),'★★★闯王宝刀')]",
+  "equip":"//span[text()='装备']",
+  "tiegao":"//div[@class='obj-item']/*[contains(text(),'铁镐')]",
 
   "店小二":"//span[text()='店小二']",
   "confirmbuy":"//span[contains(@cmd,'confirm buy')]",
@@ -97,10 +109,18 @@
   "史松":"//span[text()='黑龙鞭 史松']",
   "looktai":"//cmd[@cmd='look tai']",
   "tuitai":"//span[@cmd='tui tai']",
-  "茅十八":"//span[text()='朝廷逃犯 茅十八']"
+  "茅十八":"//span[text()='朝廷逃犯 茅十八']",
 
+  "船夫":"//span[text()='船夫']",
+  "givemoney":"//span[contains(@cmd,'money')]",
+  "阎基":"//span[text()='江湖医生 阎基']",
+  "平四":"//span[contains(text(),'平四')]",
+  "胡斐":"//span[text()='雪山飞狐 胡斐']",
+  "ask_yan":"//span[text()='询问阎基']",
+  "ask_dao":"//span[text()='询问胡家刀谱']",
+  "givehead":"//span[text()='把阎基的头颅给胡斐']",
 
-
+  "die":"//span[@pid='unarmed.zhong']"
 
 
 

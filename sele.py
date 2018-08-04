@@ -52,7 +52,7 @@ class webutils():
         elif by=="tag":
             return self.driver.find_element_by_tag_name(value)
         elif by=='xpath':
-            return self.s.Click(value)
+            return self.driver.find_element_by_xpath(value)
         elif by=='js'or by=="jquery":
             return self.ExcuteJs(value)
         else:
@@ -85,7 +85,7 @@ class webutils():
         elment=self.getElement(value)
         return self.driver.execute_script("arguments[0].innerHTML()",elment)
 
-    def InputByJs(self,by,value):
+    def InputByJs(self,value):
         '''
         :param by:     查找元素的方式
         :param value:  文本值
@@ -94,7 +94,7 @@ class webutils():
         elment=self.getElement(value)
         self.driver.execute_script("arguments[0].value=\""+value+"\"",elment)
 
-    def scrollToElement(self,by,value):
+    def scrollToElement(self,value):
         '''
         :param by:     查找元素的方式
         :param value:  文本值
