@@ -5,6 +5,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import time
+from selenium.common.exceptions import NoSuchElementException       
 
 class webutils():
 
@@ -16,7 +18,7 @@ class webutils():
         if browser == "firefox" :
             driver = webdriver.Firefox()
         elif browser == "chrome":
-            driver = webdriver.Chrome(r'D:\webdriver\chromedriver.exe')
+            driver = webdriver.Chrome(r'D:\wushen\chromedriver.exe')
         elif browser == "ie" :
             DesiredCapabilities.INTERNETEXPLORER['ignoreProtectedModeSettings'] = True
             driver = webdriver.Ie("../resources/drivers/IEDriverServer.exe")
@@ -65,7 +67,7 @@ class webutils():
         '''
         self.driver.execute_script(js)
 
-    def SetTextBox(self,text,by,value):
+    def SetTextBox(self,text,value):
         '''
         :param text:     设置文本框的值
         :param by:       查找元素的方式
@@ -84,7 +86,7 @@ class webutils():
         elment=self.getElement(value)
         return self.driver.execute_script("arguments[0].innerHTML()",elment)
 
-    def InputByJs(self,by,value):
+    def InputByJs(self,value):
         '''
         :param by:     查找元素的方式
         :param value:  文本值
@@ -93,7 +95,7 @@ class webutils():
         elment=self.getElement(value)
         self.driver.execute_script("arguments[0].value=\""+value+"\"",elment)
 
-    def scrollToElement(self,by,value):
+    def scrollToElement(self,value):
         '''
         :param by:     查找元素的方式
         :param value:  文本值
@@ -166,7 +168,8 @@ class webutils():
         :param seconds:    等待时间
         :return:
         '''
-        self.driver.implicitly_wait(seconds)
+        time.sleep(seconds)
+        #self.driver.implicitly_wait(seconds)
 
     def Close(self):
         '''
@@ -179,6 +182,17 @@ class webutils():
         :return:  退出浏览器
         '''
         self.driver.quit()
+       
+    def exists(self, xpath):
+        try:
+            self.driver.find_element_by_xpath(xpath)
+        except NoSuchElementException:
+            return False
+        return True
+
+    def find_elements(self,element):
+        return self.driver.find_elements_by_xpath(element)
+
 
     def find_element(self,element):
         """
@@ -236,6 +250,17 @@ class webutils():
         else:
             raise NameError("Please enter the correct targeting elements,'id','name','class','text','xpaht','css'.")
 
+    def untilnot(self, element, seconds=15):
+        """
+        等待元素在指定的时间类消失
+        :param element:      元素的定位表达式
+        :param seconds:      等待的时间
+        :return:
+        """
+        WebDriverWait(self.driver, seconds, 0.5).until_not(EC.presence_of_element_located((By.XPATH, element)))
+
+
+
     def Send_Keys(self,element,value):
         '''
         :param element:     元素的定位表达式
@@ -253,7 +278,9 @@ class webutils():
         :return:
         '''
         self.wait_element(element)
+        self.wait(0.5)
         self.find_element(element).click()
+
 
     def Right_Click(self,element):
         '''
@@ -282,7 +309,7 @@ class webutils():
         self.wait_element(element)
         ActionChains.double_click(self.find_element(element)).perform()
 
-    def  drag_and_drop(self,element):
+    def drag_and_drop(self,element):
         '''
         功能：拖拽元素
         :param element: 元素的表达式
