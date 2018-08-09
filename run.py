@@ -134,8 +134,8 @@ def dailyquest():
     stop=s.find_element(j['stop'])
     if stop.is_displayed():
         stop.click()
-    # buyfood()
-    # shimen()
+    buyfood()
+    shimen()
     fb()
 
 def restore():

@@ -6,7 +6,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
-from selenium.common.exceptions import NoSuchElementException       
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome.options import Options
+   
 
 class webutils():
 
@@ -18,12 +20,15 @@ class webutils():
         if browser == "firefox" :
             driver = webdriver.Firefox()
         elif browser == "chrome":
-            driver = webdriver.Chrome(r'D:\wushen\chromedriver.exe')
+            chrome_options = Options()
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--disable-gpu')
+            driver = webdriver.Chrome(r'chromedriver.exe', chrome_options=chrome_options)
         elif browser == "ie" :
             DesiredCapabilities.INTERNETEXPLORER['ignoreProtectedModeSettings'] = True
             driver = webdriver.Ie("../resources/drivers/IEDriverServer.exe")
         elif browser == "phantomjs":
-            driver = webdriver.PhantomJS()
+            driver = webdriver.PhantomJS(r'phantomjs.exe')
         try:
             self.driver = driver
         except Exception:
