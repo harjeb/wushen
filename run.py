@@ -89,6 +89,7 @@ def shimen():
         s.Click(j[u'苏星河'])
         s.Click(j[u'师门任务'])
         s.Click(j[u'师门任务'])
+        s.Click(j[u'师门任务'])
         s.wait(3)
         try:
             # give=(By.XPATH,"//span[contains(text(),'上交')]")
@@ -98,7 +99,7 @@ def shimen():
             s.wait(1)
             s.Click(j['south'])
             i += 1
-            print u'师门任务完成 %s 次' % str(i - 1)
+            print u'quest finished %s times' % str(i - 1)
         except:
             s.Click(j['giveup'])
             s.Click(j['north'])
@@ -114,12 +115,12 @@ def fb():
         s.Click(j['weapon'])
         s.Click(j['equip'])
     except:
-        print u'装备已换好，不用更换'
+        print 'no change'
     for i in xrange(20):
         s.Click(j['jh'])
         s.Click(j['fb'])
         fb9()
-        print u'副本完成 %s 次' % str(i+1)
+        print 'fb finished %s times' % str(i+1)
         if (i+1)%3==0:
             cleanbag()
     try:
@@ -127,7 +128,7 @@ def fb():
         s.Click(j['tiegao'])
         s.Click(j['equip'])
     except:
-        print u'铁镐已换号，不用更换'
+        print 'no change'
 
 def dailyquest():
     #stop state
@@ -135,7 +136,10 @@ def dailyquest():
     if stop.is_displayed():
         stop.click()
     # buyfood()
-    # shimen()
+    try:
+        shimen()
+    except:
+        print 'continue fb'
     fb()
 
 def restore():
@@ -149,7 +153,7 @@ def restore():
         chp.strip()
         if float(chp)<=90:
             try:
-                print u'当前血量 %s, 开始疗伤回血' % str(chp)
+                print 'HP： %s, starting recover' % str(chp)
                 s.Click(j['liaoshang'])
             except:
                 s.Click(j['showcombat'])
@@ -187,7 +191,7 @@ def chuzhao():
 
 
 def kill(sb=""):
-    if sb is 'i':
+    if sb == 'i':
         s.wait(1)
         chuzhao()
         #s.wait_element(j['body'],seconds=300)
@@ -195,8 +199,8 @@ def kill(sb=""):
             s.Click(j['body'])
             s.Click(j['loot'])
         except:
-            print u'autoloot not work'
-        print u'杀死了来干你的傻屌'
+            print 'autoloot not work'
+        print 'fucking somebody'
     elif sb is not '':
         s.Click(sb)
         s.Click(j['kill'])
@@ -204,17 +208,17 @@ def kill(sb=""):
         pattern = re.compile(r'(?<=\')(.+)(\')')
         match = pattern.search(sb)
         if match:
-            print u'正在击杀%s' % match.group(1)
+            print 'beating%s' % match.group(1)
         chuzhao()
         #s.wait_element(j['body'],seconds=300)
         usedtime = time.time() - sttime
         if match:
-            print u'成功杀死了%s, 用时%sS' % (match.group(1), usedtime)
+            print 'killed%s, used time:%sS' % (match.group(1), usedtime)
         try:
             s.Click(j['body'])
             s.Click(j['loot'])
         except:
-            print u'autoloot not work'
+            print 'autoloot not work'
     else:
         s.wait(1)
         s.wait_element(j['body'],seconds=300)
@@ -222,8 +226,8 @@ def kill(sb=""):
             s.Click(j['body'])
             s.Click(j['loot'])
         except:
-            print u'autoloot not work'
-        print u'杀死了来干你的傻屌'
+            print 'autoloot not work'
+        print 'fucking somebody'
 
 def cleanbag():
     try:
